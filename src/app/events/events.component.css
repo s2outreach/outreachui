@@ -1,0 +1,24 @@
+.float {
+    position: fixed;
+    top: 80%;
+    right: 3rem;
+    width: 5rem;
+    height: 5rem;
+    font-size: 5rem;
+    color: #FF8F1C;
+  }
+
+.icon-save {
+  font-size: 3rem;
+  color: #00B140;
+}
+
+.icon-cancel {
+  font-size: 3rem;
+  color: orangered;
+}
+
+.no-padding {
+  padding-left: 0px;
+  text-align: center;
+}

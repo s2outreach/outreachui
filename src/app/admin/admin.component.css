@@ -5,9 +5,13 @@
 
 .divider {
     background-color: #00B140;
-    margin: 1vw;
+    margin: 1px;
 }
 
 .tab-font {
     color: black;
+}
+
+.tab-margin {
+    margin-bottom: 5vh;
 }

@@ -1,48 +1,31 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center tab-margin">
   <nav>
     <div class="nav nav-pills" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active tab-font" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</a>
+      <a class="nav-item nav-link active tab-font" id="nav-dashboard-tab" data-toggle="tab" href="#nav-dashboard" role="tab" aria-controls="nav-dashboard" aria-selected="true">Dashboard</a>
       <mat-divider class="divider" [vertical]="true"></mat-divider>
-      <a class="nav-item nav-link tab-font" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Events</a>
+      <a class="nav-item nav-link tab-font" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>
       <mat-divider class="divider" [vertical]="true"></mat-divider>
-      <a class="nav-item nav-link tab-font" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Users</a>
+      <a class="nav-item nav-link tab-font" id="nav-reports-tab" data-toggle="tab" href="#nav-reports" role="tab" aria-controls="nav-reports" aria-selected="false">Reports</a>
+      <mat-divider class="divider" [vertical]="true"></mat-divider>
+      <a class="nav-item nav-link tab-font" id="nav-log-tab" data-toggle="tab" href="#nav-log" role="tab" aria-controls="nav-log" aria-selected="false">Log</a>
     </div>
   </nav>
 </div>
 
+<div class></div>
+
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-    <div class="container-fluid custom-top-margin">
-      <div class="row justify-content-center">
-          <div class="col-md-1"></div>
-          <div class="col-md">
-              <mat-card class="card-style">
-                  <mat-card-header>
-                      <mat-card-title>Track Ride</mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content>
-                      <mat-card class="light3-bg cardMargin">
-                          <mat-card-content>
-                              <div class="row">
-                                <div class="col-md-4">
-                                  Total Events in 2019
-                                </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                            56
-                          </div>
-                        </div>
-                          </mat-card-content>
-                      </mat-card>
-                  </mat-card-content>
-              </mat-card>
-          </div>
-          <div class="col-md-1"></div>
-      </div>
+  <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel" aria-labelledby="nav-dashboard-tab">
+    <app-dashboard></app-dashboard>
   </div>
+  <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+    <app-events></app-events>
   </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Profile</div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Contact</div>
+  <div class="tab-pane fade" id="nav-reports" role="tabpanel" aria-labelledby="nav-reports-tab">
+    <app-reports></app-reports>
+  </div>
+  <div class="tab-pane fade" id="nav-log" role="tabpanel" aria-labelledby="nav-log-tab">
+    <app-log></app-log>
+  </div>
 </div>
   

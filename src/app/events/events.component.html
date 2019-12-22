@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+  <div class="col-md-1"></div>
+  <div class="col-md">
+    <mat-card class="light2-bg cardMargin d-none d-md-block">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <strong>Event</strong>
+          </div>
+          <div class="col-md-2">
+            <strong>Date</strong>
+          </div>
+          <div class="col-md-2">
+            <strong>Volunteers Required</strong>
+          </div>
+          <div class="col-md-2">
+            <strong>Volunteers Registered</strong>
+          </div>
+  	    </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+<div *ngIf="newEventflag" class="row justify-content-center">
+  <div class="col-md-1"></div>
+  <div class="col-md">
+    <mat-card class="cardlist">
+      <mat-card-content>
+        <div class="row">
+          <mat-form-field class="col-md-6">
+            <input matInput class="darkfont" placeholder="Event name" [(ngModel)]="eventname">
+          </mat-form-field>
+          <mat-form-field class="col-md-2">
+            <input matInput [matDatepicker]="picker" placeholder="Event date" [(ngModel)]="eventdate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="col-md-2">
+            <input matInput class="darkfont" placeholder="Volunteers" [(ngModel)]="reqdCount">
+          </mat-form-field>
+          <div class="col-md-2">
+              <div class="row">
+                <div class="col no-padding">
+                  <mat-icon class="icon-save" (click)="save()">check_circle_outline</mat-icon>
+                </div>
+                <div class="col no-padding">
+                  <mat-icon class="icon-cancel" (click)="cancel()">highlight_off</mat-icon>
+                </div>
+              </div>
+          </div>
+  	    </div>
+          <div class="row">
+            <mat-checkbox class="col">
+              Send the new event mail to all volunteers
+            </mat-checkbox>
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-1"></div>
+  <div class="col-md">
+    <mat-card class="cardlist">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            Teaching in Government school
+          </div>
+          <div class="col-md-2">
+            <span class="d-md-none"><strong>Date: </strong></span>
+            2020-01-01
+          </div>
+          <div class="col-md-2">
+            <span class="d-md-none"><strong>Volunteers Required: </strong></span>
+            10
+          </div>
+          <div class="col-md-2">
+            <span class="d-md-none"><strong>Volunteers Registered: </strong></span>
+            5
+          </div>
+  	    </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+<mat-icon class="float" (click)="addEvent()">control_point</mat-icon>

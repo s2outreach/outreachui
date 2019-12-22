@@ -58,3 +58,8 @@ body, html {
 .cardMargin {
     margin-bottom: 2vw;
 }
+
+.cardlist {
+    border: 1px solid #00B140;
+    margin-bottom: 2vw;
+}
