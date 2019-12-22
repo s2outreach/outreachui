@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule, MatTooltipModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDividerModule,
   MatCardModule, MatSnackBarModule, MatRadioModule, MatChipsModule, MatTabsModule,
-  MatDatepickerModule, MatNativeDateModule, MatCheckboxModule } from '@angular/material';
+  MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatTableModule, MatExpansionModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,8 @@ import { EventsComponent } from './events/events.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReportsComponent } from './reports/reports.component';
 import { LogComponent } from './log/log.component';
+import { EventreportsComponent } from './reports/eventreports/eventreports.component';
+import { VolunteerreportsComponent } from './reports/volunteerreports/volunteerreports.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { LogComponent } from './log/log.component';
     EventsComponent,
     DashboardComponent,
     ReportsComponent,
-    LogComponent
+    LogComponent,
+    EventreportsComponent,
+    VolunteerreportsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,9 @@ import { LogComponent } from './log/log.component';
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
+    MatExpansionModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true}

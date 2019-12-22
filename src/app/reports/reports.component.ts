@@ -12,4 +12,7 @@ export class ReportsComponent implements OnInit {
   ngOnInit() {
   }
 
+  sendMail() {
+    console.log('mail sent');
+  }
 }
