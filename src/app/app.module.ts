@@ -20,6 +20,9 @@ import { ReportsComponent } from './reports/reports.component';
 import { LogComponent } from './log/log.component';
 import { EventreportsComponent } from './reports/eventreports/eventreports.component';
 import { VolunteerreportsComponent } from './reports/volunteerreports/volunteerreports.component';
+import { VolunteerComponent } from './volunteer/volunteer.component';
+import { AlleventsComponent } from './volunteer/allevents/allevents.component';
+import { RegisteredeventsComponent } from './volunteer/registeredevents/registeredevents.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { VolunteerreportsComponent } from './reports/volunteerreports/volunteerr
     ReportsComponent,
     LogComponent,
     EventreportsComponent,
-    VolunteerreportsComponent
+    VolunteerreportsComponent,
+    VolunteerComponent,
+    AlleventsComponent,
+    RegisteredeventsComponent
   ],
   imports: [
     BrowserModule,

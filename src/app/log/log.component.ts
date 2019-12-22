@@ -10,6 +10,7 @@ export class LogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('im here');
   }
 
 }

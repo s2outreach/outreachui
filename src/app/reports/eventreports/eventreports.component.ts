@@ -13,6 +13,7 @@ export class EventreportsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('im here');
   }
 
 }

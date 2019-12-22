@@ -13,13 +13,14 @@ export class VolunteerreportsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('im here');
   }
 
 }
 
 export interface EventData {
-  username: string;
-  email: string;
+  eventname: string;
+  date: string;
 }
 
 const DATA: EventData[] = [

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   mocksignin() {
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/volunteer']);
   }
   signin() {
     this.errorMsg = '';

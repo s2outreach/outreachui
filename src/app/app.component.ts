@@ -26,13 +26,8 @@ export class AppComponent implements OnInit{
           this.option = 'Sign in';
           this.username = '';
           break;
-          case('/rider'):
-          this.header = 'Rider';
-          this.username = sessionStorage.getItem('username');
-          this.option = 'Logout';
-          break;
-          case('/driver'):
-          this.header = 'Driver';
+          case('/volunteer'):
+          this.header = 'Volunteer';
           this.username = sessionStorage.getItem('username');
           this.option = 'Logout';
           break;
