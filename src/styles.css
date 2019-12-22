@@ -1,0 +1,60 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body, html {
+	margin: 0px;
+	padding: 0px;
+	min-height: 100%;
+    background-color: #FFFFFF;
+    font-size: 1em;
+}
+
+@font-face {
+  font-family: TTNorm;
+  src: url(assets/font/TT-Norms/TTNorms-Regular.otf) format("opentype");
+}
+
+* {
+  font-family: 'TTNorm', Geneva, Verdana, sans-serif;
+}
+
+
+
+.light1-bg {
+    background-color: #E9CFCF;
+}
+
+.light2-bg {
+    background-color: #0033A0;
+    color: #FFFFFF;
+}
+
+.light3-bg {
+    background-color: #F3E8E8;
+}
+
+.box-container {
+    border: 2px solid #00B140;
+    padding: 3vw;
+    border-radius: 2vw;
+}
+
+.btn {
+    background-color: #FF8F1C;
+    border: 1px solid #00B140;
+}
+
+.errorMsg {
+    color: red;
+}
+
+.cardError {
+    padding-top: 1vw;
+    padding-left: 1vw;
+}
+
+.label {
+    font-size: 0.5em;
+}
+
+.cardMargin {
+    margin-bottom: 2vw;
+}
