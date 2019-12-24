@@ -11,9 +11,8 @@ const routes: Routes = [];
 @NgModule({
   imports: [RouterModule.forRoot([
   {path: 'login', component: LoginComponent},
-  // {path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] },
-  {path: 'admin', component: AdminComponent},
-  {path: 'volunteer', component: VolunteerComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] },
+  {path: 'volunteer', component: VolunteerComponent, canActivate: [AuthGuardService] },
   {path: 'signup', component: SignupComponent },
   {path: '**', component: LoginComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}

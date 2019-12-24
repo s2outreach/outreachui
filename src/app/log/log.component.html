@@ -1,10 +1,16 @@
 <div class="row justify-content-center">
   <div class="col-md-1"></div>
   <div class="col-md">
+    <mat-card class="light2-bg cardMargin d-none d-md-block">
+      <mat-card-content>
+        <strong>Eventname | Username | Action | Timestamp</strong>
+      </mat-card-content>
+    </mat-card>
     <div class="hor-vert-scroll">
-        A test statement
+      <div *ngFor="let eachlog of logs">
+        {{eachlog}}
         <mat-divider></mat-divider>
-        Another test statement
+      </div>
     </div>
   </div>
   <div class="col-md-1"></div>

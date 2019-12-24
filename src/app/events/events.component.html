@@ -10,11 +10,8 @@
           <div class="col-md-2">
             <strong>Date</strong>
           </div>
-          <div class="col-md-2">
-            <strong>Volunteers Required</strong>
-          </div>
-          <div class="col-md-2">
-            <strong>Volunteers Registered</strong>
+          <div class="col-md-4">
+            <strong>Location</strong>
           </div>
   	    </div>
       </mat-card-content>
@@ -33,12 +30,12 @@
             <input matInput class="darkfont" placeholder="Event name" [(ngModel)]="eventname">
           </mat-form-field>
           <mat-form-field class="col-md-2">
-            <input matInput [matDatepicker]="picker" placeholder="Event date" [(ngModel)]="eventdate">
+            <input matInput [matDatepickerFilter]="dateFilter" [matDatepicker]="picker" placeholder="Event date" [(ngModel)]="eventdate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="col-md-2">
-            <input matInput class="darkfont" placeholder="Volunteers" [(ngModel)]="reqdCount">
+            <input matInput class="darkfont" placeholder="Location" [(ngModel)]="location">
           </mat-form-field>
           <div class="col-md-2">
               <div class="row">
@@ -51,37 +48,36 @@
               </div>
           </div>
   	    </div>
-          <div class="row">
-            <mat-checkbox class="col">
+        <div class="row">
+          <mat-checkbox class="col">
               Send the new event mail to all volunteers
-            </mat-checkbox>
-          </div>
+          </mat-checkbox>
+        </div>
+        <div *ngIf="errorMsg.length > 0" class="row">
+          <mat-label class="col errorMsg">{{errorMsg}}</mat-label>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
   <div class="col-md-1"></div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngFor="let event of allEvents">
   <div class="col-md-1"></div>
   <div class="col-md">
     <mat-card class="cardlist">
       <mat-card-content>
         <div class="row">
           <div class="col-md-6">
-            Teaching in Government school
+            {{event.eventname}}
           </div>
           <div class="col-md-2">
             <span class="d-md-none"><strong>Date: </strong></span>
-            2020-01-01
+            {{event.eventdate}}
           </div>
           <div class="col-md-2">
-            <span class="d-md-none"><strong>Volunteers Required: </strong></span>
-            10
-          </div>
-          <div class="col-md-2">
-            <span class="d-md-none"><strong>Volunteers Registered: </strong></span>
-            5
+            <span class="d-md-none"><strong>Location: </strong></span>
+            {{event.location}}
           </div>
   	    </div>
       </mat-card-content>

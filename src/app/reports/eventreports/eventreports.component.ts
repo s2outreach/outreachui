@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import * as _ from 'lodash';
+import { OutreachService } from './../../service/outreach.service';
 
 @Component({
   selector: 'app-eventreports',
@@ -7,26 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventreportsComponent implements OnInit {
 
-  displayedColumns: string[] = ['username', 'email'];
-  dataSource = DATA;
+  allEvents: any;
+  show = true;
+  currExpanded = 0;
 
-  constructor() { }
+  constructor(@Inject(OutreachService) private outreachService) { }
 
   ngOnInit() {
-    console.log('im here');
+    this.getAllEvents();
+  }
+
+  getAllEvents() {
+    this.outreachService.getEventReport().subscribe(response => {
+      this.allEvents = _.orderBy(response, ['eventdate'], ['desc']);
+      for (let i = 0; i < this.allEvents.length; i++) {
+        console.log(this.allEvents[i]);
+        this.allEvents[i].collapse = true;
+        this.allEvents[i].id = i;
+      }
+      this.allEvents[0].collapse = false;
+      console.log(this.allEvents);
+    });
+  }
+
+  toggle(index) {
+    console.log('clicked');
+    for (let i = 0; i < this.allEvents.length; i++) {
+      this.allEvents[i].collapse = true;
+    }
+    if (this.currExpanded == index) {
+
+    } else {
+      this.allEvents[index].collapse = false;
+    }
+    this.currExpanded = index;
   }
 
 }
 
-export interface VolunteerData {
-  username: string;
-  email: string;
-}
-
-const DATA: VolunteerData[] = [
-  { username: 'volunteer1', email: 'email1' },
-  { username: 'volunteer2', email: 'email2'},
-  { username: 'volunteer3', email: 'email3'},
-  { username: 'volunteer4', email: 'email4'},
-  { username: 'volunteer5', email: 'email5'},
-];

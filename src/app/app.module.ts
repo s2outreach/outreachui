@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule, MatTooltipModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDividerModule,
@@ -64,7 +65,7 @@ import { RegisteredeventsComponent } from './volunteer/registeredevents/register
     MatTableModule,
     MatExpansionModule
   ],
-  providers: [
+  providers: [ DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]

@@ -23,6 +23,11 @@ export class AuthGuardService implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
+
+    if (url.indexOf('volunteer') === 1 && role !== 'USER') {
+      this.router.navigate(['/login']);
+      return false;
+    }
     return true;
   }
 }

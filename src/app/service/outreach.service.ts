@@ -9,11 +9,10 @@ import { environment } from '../../environments/environment';
 export class OutreachService {
 
   private baseURL = environment.baseURL;
-  // private baseURL = 'http://ec2-13-234-202-173.ap-south-1.compute.amazonaws.com/';
   private authserver = 'authserver';
-  private rideserver = 'rideserver';
-  private riderserver = 'riderserver';
-  private driverserver = 'driverserver';
+  private eventserver = 'eventserver';
+  private emailserver = 'emailserver';
+  private logserver = 'logserver';
   private headers = HttpHeaders;
 
   constructor(private http: HttpClient) { }
@@ -38,59 +37,60 @@ export class OutreachService {
       }));
   }
 
-  public getAllRiderRides(userid) {
-    return this.http.get(this.baseURL + this.rideserver + '/rider' + '?riderid=' + userid)
+  public addEvent(reqObj) {
+    return this.http.post(this.baseURL + this.eventserver + '/addEvent', reqObj )
+    .pipe(
+      map(resp  => {
+        return resp;
+      }));
+  }
+
+  public getAllEvents() {
+    return this.http.get(this.baseURL + this.eventserver + '/getAllEvents')
     .pipe(
     map(resp => {
       return resp;
     } ));
   }
 
-  public requestRide(reqObj) {
-    return this.http.post(this.baseURL + this.riderserver + '/addride', reqObj )
-    .pipe(
-      map(resp  => {
-        return resp;
-      }));
-  }
-
-  public cancelRide(reqObj) {
-    return this.http.post(this.baseURL + this.riderserver + '/cancelride', reqObj)
-    .pipe(
-      map(resp  => {
-        return resp;
-      }));
-  }
-
-  public getAllDriverRides(driverid) {
-    return this.http.get(this.baseURL + this.rideserver + '/driver' + '?driverid=' + driverid)
+  public getEventReport() {
+    return this.http.get(this.baseURL + this.eventserver + '/getEventReport')
     .pipe(
     map(resp => {
       return resp;
     } ));
   }
 
-  public getOpenRides() {
-    return this.http.get(this.baseURL + this.rideserver + '/openrides')
+  public getUserReport() {
+    return this.http.get(this.baseURL + this.eventserver + '/getUserReport')
     .pipe(
-      map(resp  => {
-        return resp;
-      }));
+    map(resp => {
+      return resp;
+    } ));
   }
 
-  public updateRide(reqObj) {
-    return this.http.post(this.baseURL + this.driverserver + '/updateride', reqObj)
+  public getLog() {
+    return this.http.get(this.baseURL + this.logserver + '/getAllLogs')
     .pipe(
-      map(resp  => {
-        return resp;
-      }));
+    map(resp => {
+      return resp;
+    } ));
   }
 
-  public getAllRides() {
-    return this.http.get(this.baseURL + this.rideserver + '/admin')
-    .pipe(
-      map(resp  => {
-        return resp;
-      }));
-  }
+  // public getAllRiderRides(userid) {
+  //   return this.http.get(this.baseURL + this.rideserver + '/rider' + '?riderid=' + userid)
+  //   .pipe(
+  //   map(resp => {
+  //     return resp;
+  //   } ));
+  // }
+
+  // public requestRide(reqObj) {
+  //   return this.http.post(this.baseURL + this.riderserver + '/addride', reqObj )
+  //   .pipe(
+  //     map(resp  => {
+  //       return resp;
+  //     }));
+  // }
+
 }

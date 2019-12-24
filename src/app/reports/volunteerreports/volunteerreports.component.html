@@ -15,12 +15,12 @@
                 <div class="hor-vert-scroll">
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                         <ng-container matColumnDef="eventname">
-                            <th mat-header-cell *matHeaderCellDef> Volunteer </th>
+                            <th mat-header-cell *matHeaderCellDef> Event </th>
                             <td mat-cell *matCellDef="let element"> {{element.eventname}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef> Email </th>
+                            <th mat-header-cell *matHeaderCellDef> Date </th>
                             <td mat-cell *matCellDef="let element"> {{element.date}} </td>
                         </ng-container>
 
