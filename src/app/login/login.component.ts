@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('role', response.body.role);
         sessionStorage.setItem('userid', response.body.userid);
         sessionStorage.setItem('token', response.headers.get('Authorization'));
-        console.log(response.body.role);
         if (response.body.role === 'USER') {
           this.router.navigate(['/volunteer']);
         }

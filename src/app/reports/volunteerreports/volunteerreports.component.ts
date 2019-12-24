@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { OutreachService } from './../../service/outreach.service';
 
 @Component({
   selector: 'app-volunteerreports',
@@ -7,26 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VolunteerreportsComponent implements OnInit {
 
-  displayedColumns: string[] = ['eventname', 'date'];
-  dataSource = DATA;
+  allVolunteers: any;
+  show = true;
 
-  constructor() { }
+  constructor(@Inject(OutreachService) private outreachService) { }
 
   ngOnInit() {
-    console.log('im here');
+    this.getAllUsers();
   }
 
+  getAllUsers() {
+    this.outreachService.getUserReport().subscribe(response => {
+      this.allVolunteers = response;
+      for (let i = 0; i < this.allVolunteers.length; i++) {
+        this.allVolunteers[i].collapse = true;
+        this.allVolunteers[i].id = i;
+      }
+      this.allVolunteers[0].collapse = false;
+    });
+  }
+
+  toggle(index) {
+    this.allVolunteers[index].collapse = !this.allVolunteers[index].collapse;
+    for (let i = 0; i < this.allVolunteers.length; i++) {
+      if ( index != i) {
+        this.allVolunteers[i].collapse = true;
+      }
+    }
+  }
 }
 
-export interface EventData {
-  eventname: string;
-  date: string;
-}
-
-const DATA: EventData[] = [
-  { eventname: 'event1', date: 'date1' },
-  { eventname: 'event2', date: 'date2'},
-  { eventname: 'event3', date: 'date3'},
-  { eventname: 'event4', date: 'date4'},
-  { eventname: 'event5', date: 'date5'},
-];
