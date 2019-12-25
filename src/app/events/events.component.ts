@@ -11,17 +11,20 @@ import { SharedService } from './../service/shared.service'
 })
 export class EventsComponent implements OnInit {
 
+  allLocations = ['Bangalore', 'Chennai', 'Cochin', 'Coimbatore', 'Mumbai', 'Kolkata'];
   eventname = '';
   eventdate = '';
   location = '';
   newEventflag = false;
   errorMsg = '';
   allEvents: any;
+  totalEvents = 0;
+  upcomingCount = 0;
+  currDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
   dateFilter = (d: Date): boolean => {
-    const currDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     const day = this.datePipe.transform(d, 'yyyy-MM-dd');
-    return (currDate < day);
+    return (this.currDate < day);
   }
 
   constructor(@Inject(OutreachService) private outreachService,
@@ -49,7 +52,7 @@ export class EventsComponent implements OnInit {
       };
       this.outreachService.addEvent(reqObj).subscribe(response => {
         this.newEventflag = false;
-        this.sharedService.updateLog.emit('updateLog');
+        this.sharedService.eventAdded.emit('eventAdded');
         this.getAllEvents();
       });
     }
@@ -61,7 +64,25 @@ export class EventsComponent implements OnInit {
       this.eventdate = '';
       this.eventname = '';
       this.location = '';
+      this.eventInsight();
     });
+  }
+
+  eventInsight() {
+    this.totalEvents = this.allEvents.length;
+    const that = this;
+    const upcompingEvents = _.filter(this.allEvents, function(event) {
+      return (event.eventdate > that.currDate );
+    });
+    this.upcomingCount = upcompingEvents.length;
+    this.sendtoDashboard();
+  }
+
+  sendtoDashboard() {
+    console.log('send to dashboard');
+    this.sharedService.totalEvents = this.totalEvents;
+    this.sharedService.upcomingCount = this.upcomingCount;
+    this.sharedService.eventToDashboard.emit('dashboardData');
   }
 
   cancel() {

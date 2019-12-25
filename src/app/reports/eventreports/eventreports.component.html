@@ -1,39 +1,44 @@
 <div class="row justify-content-center">
     <div class="col-md-1"></div>
     <div class="col-md">
-        <div *ngFor="let event of allEvents; let i = index" class="card cardlist">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        {{event.eventname}}
+        <div *ngIf="!allEvents || allEvents.length == 0">
+            No Event recorded yet
+        </div>
+        <div *ngIf="allEvents && allEvents.length > 0">
+            <div *ngFor="let event of allEvents; let i = index" class="card cardlist">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            {{event.eventname}}
+                        </div>
+                        <div class="col-md-4">
+                            {{event.eventdate}}
+                        </div>
+                        <div class="col-md-4" align="right">
+                            <mat-icon *ngIf="allEvents[i].collapse" (click)="toggle(i)">keyboard_arrow_down</mat-icon>
+                            <mat-icon *ngIf="!allEvents[i].collapse" (click)="toggle(i)">keyboard_arrow_up</mat-icon>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        {{event.eventdate}}
-                    </div>
-                    <div class="col-md-4" align="right">
-                        <mat-icon *ngIf="allEvents[i].collapse" (click)="toggle(i)">keyboard_arrow_down</mat-icon>
-                        <mat-icon *ngIf="!allEvents[i].collapse" (click)="toggle(i)">keyboard_arrow_up</mat-icon>
-                    </div>
-                </div>
-                <div [hidden]="allEvents[i].collapse">
-                    <table *ngIf="event.userdata && event.userdata.length > 0" class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let user of event.userdata; let j = index">
-                                <td>{{j + 1}}</td>
-                                <td>{{user.username}}</td>
-                                <td>{{user.email}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div *ngIf="!event.userdata || event.userdata.length == 0">
-                        No Volunteers registered yet
+                    <div [hidden]="allEvents[i].collapse">
+                        <table *ngIf="event.userdata && event.userdata.length > 0" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of event.userdata; let j = index">
+                                    <td>{{j + 1}}</td>
+                                    <td>{{user.username}}</td>
+                                    <td>{{user.email}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div *ngIf="!event.userdata || event.userdata.length == 0">
+                            No Volunteers registered yet
+                        </div>
                     </div>
                 </div>
             </div>

@@ -37,6 +37,14 @@ export class OutreachService {
       }));
   }
 
+  public getUserCount() {
+    return this.http.get(this.baseURL + this.eventserver + '/getUserCount')
+    .pipe(
+      map(resp  => {
+        return resp;
+      }));
+  }
+
   public addEvent(reqObj) {
     return this.http.post(this.baseURL + this.eventserver + '/addEvent', reqObj )
     .pipe(
@@ -76,21 +84,5 @@ export class OutreachService {
       return resp;
     } ));
   }
-
-  // public getAllRiderRides(userid) {
-  //   return this.http.get(this.baseURL + this.rideserver + '/rider' + '?riderid=' + userid)
-  //   .pipe(
-  //   map(resp => {
-  //     return resp;
-  //   } ));
-  // }
-
-  // public requestRide(reqObj) {
-  //   return this.http.post(this.baseURL + this.riderserver + '/addride', reqObj )
-  //   .pipe(
-  //     map(resp  => {
-  //       return resp;
-  //     }));
-  // }
 
 }

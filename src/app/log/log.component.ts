@@ -16,7 +16,7 @@ export class LogComponent implements OnInit {
 
   constructor(@Inject(OutreachService) private outreachService,
   @Inject(SharedService) private sharedService) { 
-    this.subscription = this.sharedService.updateLog.subscribe((data: any) => {
+    this.subscription = this.sharedService.eventAdded.subscribe((data: any) => {
       this.getLog();
     });
   }

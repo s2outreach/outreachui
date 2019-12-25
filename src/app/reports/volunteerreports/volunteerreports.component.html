@@ -1,6 +1,9 @@
 <div class="row justify-content-center">
     <div class="col-md-1"></div>
     <div class="col-md">
+        <div *ngIf="!allVolunteers || allVolunteers.length == 0">
+            No Event recorded yet
+        </div>
         <div *ngFor="let user of allVolunteers; let i = index" class="card cardlist">
             <div class="card-body">
                 <div class="row">

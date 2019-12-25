@@ -8,7 +8,7 @@
             <mat-card-content>
               Total Events in 2019
               <div class="row justify-content-center highlight-font1">
-                56
+                {{totalEvents}}
               </div>
             </mat-card-content>
           </mat-card>
@@ -19,7 +19,7 @@
             <mat-card-content>
               Upcoming Events
               <div class="row justify-content-center highlight-font1">
-                24
+                {{upcomingCount}}
               </div>
             </mat-card-content>
           </mat-card>
@@ -30,7 +30,7 @@
             <mat-card-content>
               Total Volunteers
               <div class="row justify-content-center highlight-font1">
-                12428
+                {{userCount}}
               </div>
             </mat-card-content>
           </mat-card>
@@ -51,16 +51,16 @@
               Events by participation
               <table class="highlight-font2">
                 <tr>
-                  <td>Good (>20)</td>
-                  <td>21</td>
+                  <td>Good (>=20)</td>
+                  <td>{{eventGood}}</td>
                 </tr>
                 <tr>
                   <td>Average (>10)</td>
-                  <td>32</td>
+                  <td>{{eventAverage}}</td>
                 </tr>
                 <tr>
-                  <td>Low (<10)</td>
-                  <td>7</td>
+                  <td>Low (<=10)</td>
+                  <td>{{eventLow}}</td>
                 </tr>
               </table>
             </mat-card-content>
@@ -70,19 +70,19 @@
         <div class="col-md">
           <mat-card class="light2-bg cardMargin">
             <mat-card-content>
-              Events by location
+              Top 3 locations
               <table class="highlight-font2">
                 <tr>
-                  <td>Chennai</td>
-                  <td>21</td>
+                  <td>{{top1Location}}</td>
+                  <td>{{top1Count}}</td>
                 </tr>
                 <tr>
-                  <td>Coimbatore</td>
-                  <td>32</td>
+                  <td>{{top2Location}}</td>
+                  <td>{{top2Count}}</td>
                 </tr>
                 <tr>
-                  <td>Cochin</td>
-                  <td>7</td>
+                  <td>{{top3Location}}</td>
+                  <td>{{top3Count}}</td>
                 </tr>
               </table>
             </mat-card-content>
@@ -95,16 +95,16 @@
               Volunteers by participation
               <table class="highlight-font2">
                 <tr>
-                  <td>Good (>10)</td>
-                  <td>21</td>
+                  <td>Good (>=10)</td>
+                  <td>{{volunteerGood}}</td>
                 </tr>
                 <tr>
                   <td>Average (>5)</td>
-                  <td>32</td>
+                  <td>{{volunteerAverage}}</td>
                 </tr>
                 <tr>
-                  <td>Low (<5)</td>
-                  <td>7</td>
+                  <td>Low (<=5)</td>
+                  <td>{{volunteerLow}}</td>
                 </tr>
               </table>
             </mat-card-content>

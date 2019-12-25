@@ -5,9 +5,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { MatButtonModule, MatTooltipModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDividerModule,
-  MatCardModule, MatSnackBarModule, MatRadioModule, MatChipsModule, MatTabsModule,
-  MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatTableModule, MatExpansionModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDividerModule,
+  MatCardModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, 
+  MatCheckboxModule, MatSelectModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,20 +50,16 @@ import { RegisteredeventsComponent } from './volunteer/registeredevents/register
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatTooltipModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     MatDividerModule,
     MatCardModule,
-    MatRadioModule,
-    MatChipsModule,
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatTableModule,
-    MatExpansionModule
+    MatSelectModule
   ],
   providers: [ DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true}
