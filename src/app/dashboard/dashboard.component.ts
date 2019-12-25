@@ -35,8 +35,6 @@ export class DashboardComponent implements OnInit {
     this.eventSubscription = this.sharedService.eventToDashboard.subscribe((data: any) => {
       this.totalEvents = this.sharedService.totalEvents;
       this.upcomingCount = this.sharedService.upcomingCount;
-      console.log('this.totalEvents', this.totalEvents);
-      console.log('this.upcomingCount', this.upcomingCount);
     });
 
     this.eventReportSubscription = this.sharedService.eventReportToDashboard.subscribe((data: any) => {
@@ -55,10 +53,6 @@ export class DashboardComponent implements OnInit {
         this.top3Location = this.sharedService.top3Locations[2].eventlocation;
         this.top3Count = this.sharedService.top3Locations[2].locationcount;
       }
-      console.log('this.eventGood', this.eventGood);
-      console.log('this.eventAverage', this.eventAverage);
-      console.log('this.eventLow', this.eventLow);
-      console.log('this.top3Locations', this.sharedService.top3Locations[0]);
 
     });
 
@@ -66,9 +60,6 @@ export class DashboardComponent implements OnInit {
       this.volunteerGood = this.sharedService.volunteerGood;
       this.volunteerAverage = this.sharedService.volunteerAverage;
       this.volunteerLow = this.sharedService.volunteerLow;
-      console.log('this.volunteerGood', this.volunteerGood);
-      console.log('this.volunteerAverage', this.volunteerAverage);
-      console.log('this.volunteerLow', this.volunteerLow);
     });
 
 

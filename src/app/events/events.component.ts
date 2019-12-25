@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import * as _ from 'lodash';
 import { OutreachService } from './../service/outreach.service';
-import { SharedService } from './../service/shared.service'
+import { SharedService } from './../service/shared.service';
 
 @Component({
   selector: 'app-events',
@@ -21,6 +21,9 @@ export class EventsComponent implements OnInit {
   totalEvents = 0;
   upcomingCount = 0;
   currDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+  sendmailChecked = true;
+  formatteddate = '';
+  reqObj: any;
 
   dateFilter = (d: Date): boolean => {
     const day = this.datePipe.transform(d, 'yyyy-MM-dd');
@@ -40,22 +43,30 @@ export class EventsComponent implements OnInit {
   }
 
   save() {
-    const formatteddate = this.datePipe.transform(this.eventdate, 'yyyy-MM-dd');
+    this.formatteddate = this.datePipe.transform(this.eventdate, 'yyyy-MM-dd');
     this.errorMsg = '';
     if (this.location === '' || this.eventname === '' || this.eventdate === '') {
       this.errorMsg = 'All fields mandatory';
     } else {
-      const reqObj = {
+      this.reqObj = {
         eventname: this.eventname,
-        eventdate: formatteddate,
+        eventdate: this.formatteddate,
         location: this.location
       };
-      this.outreachService.addEvent(reqObj).subscribe(response => {
+      this.outreachService.addEvent(this.reqObj).subscribe(response => {
         this.newEventflag = false;
         this.sharedService.eventAdded.emit('eventAdded');
         this.getAllEvents();
+        if (this.sendmailChecked) {
+          this.sendmail();
+        }
       });
     }
+  }
+
+  sendmail() {
+    this.outreachService.sendNewEventMail(this.reqObj).subscribe(response => {
+    });
   }
 
   getAllEvents() {
@@ -79,7 +90,6 @@ export class EventsComponent implements OnInit {
   }
 
   sendtoDashboard() {
-    console.log('send to dashboard');
     this.sharedService.totalEvents = this.totalEvents;
     this.sharedService.upcomingCount = this.upcomingCount;
     this.sharedService.eventToDashboard.emit('dashboardData');

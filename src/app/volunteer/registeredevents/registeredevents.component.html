@@ -23,22 +23,22 @@
   <div class="col-md-1"></div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngFor="let event of registeredEvents">
   <div class="col-md-1"></div>
   <div class="col-md">
     <mat-card class="cardlist">
       <mat-card-content>
         <div class="row">
           <div class="col-md-6">
-            Teaching in Government school
+            {{event.eventname}}
           </div>
           <div class="col-md-2">
             <span class="d-md-none"><strong>Date: </strong></span>
-            2020-01-01
+            {{event.eventdate}}
           </div>
           <div class="col-md-2">
             <span class="d-md-none"><strong>Location</strong></span>
-            Chennai
+            {{event.location}}
           </div>
           <div class="col-md-2">
             <mat-icon class="icon-cancel" (click)="cancel()">highlight_off</mat-icon>

@@ -80,9 +80,6 @@ export class EventreportsComponent implements OnInit {
         } else {
           this.eventLow = this.eventLow + 1;
         }
-        console.log(this.eventGood);
-        console.log(this.eventAverage);
-        console.log(this.eventLow);
       }
     });
   }

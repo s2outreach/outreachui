@@ -75,9 +75,6 @@ export class VolunteerreportsComponent implements OnInit {
         } else {
           this.volunteerLow = this.volunteerLow + 1;
         }
-        console.log(this.volunteerGood);
-        console.log(this.volunteerAverage);
-        console.log(this.volunteerLow);
       }
     });
   }

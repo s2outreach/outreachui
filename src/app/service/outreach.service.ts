@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
@@ -13,7 +13,7 @@ export class OutreachService {
   private eventserver = 'eventserver';
   private emailserver = 'emailserver';
   private logserver = 'logserver';
-  private headers = HttpHeaders;
+  // private headers = HttpHeaders;
 
   constructor(private http: HttpClient) { }
 
@@ -26,9 +26,8 @@ export class OutreachService {
   }
 
   public authenticate(username, password) {
-    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
+    // const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
     return this.http.post(this.baseURL + this.authserver + '/authenticate', null, {
-    // return this.http.post('http://localhost:1111/authenticate', null, {
       headers: new HttpHeaders().set('Authorization', 'Basic ' + btoa(username + ':' + password)),
       observe: 'response'})
     .pipe(
@@ -77,12 +76,36 @@ export class OutreachService {
     } ));
   }
 
+  public registerUser(reqObj) {
+    return this.http.post(this.baseURL + this.eventserver + '/addUserForEvent', reqObj )
+    .pipe(
+      map(resp  => {
+        return resp;
+      }));
+  }
+
+  public getRegisteredEvents(userid) {
+    return this.http.get(this.baseURL + this.eventserver + '/getEventsForUser?userid=' + userid)
+    .pipe(
+    map(resp => {
+      return resp;
+    } ));
+  }
+
   public getLog() {
     return this.http.get(this.baseURL + this.logserver + '/getAllLogs')
     .pipe(
     map(resp => {
       return resp;
     } ));
+  }
+
+  public sendNewEventMail(reqObj) {
+    return this.http.post(this.baseURL + this.emailserver + '/sendNewEventMail', reqObj )
+    .pipe(
+      map(resp  => {
+        return resp;
+      }));
   }
 
 }

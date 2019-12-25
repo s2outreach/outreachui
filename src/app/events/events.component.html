@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="row">
-          <mat-checkbox class="col">
+          <mat-checkbox class="col" [checked]="sendmailChecked" (change)="sendmailChecked = !sendmailChecked">
             Send the new event mail to all volunteers
           </mat-checkbox>
         </div>
@@ -96,3 +96,4 @@
 </div>
 
 <mat-icon class="float" (click)="addEvent()">control_point</mat-icon>
+
