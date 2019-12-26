@@ -40,9 +40,6 @@ export class AlleventsComponent implements OnInit {
 
   splitEvents() {
     this.unregisteredEvents = _.differenceBy(this.allEvents, this.registeredEvents, 'eventid');
-    console.log(this.allEvents);
-    console.log(this.registeredEvents);
-    console.log(this.unregisteredEvents);
     this.registeredEvents.forEach(event => {
       event.registered = true;
     });
@@ -50,11 +47,9 @@ export class AlleventsComponent implements OnInit {
       event.registered = false;
     });
     this.allEventsFormatted = _.concat(this.registeredEvents, this.unregisteredEvents);
-    console.log(this.allEventsFormatted);
   }
 
   register(event) {
-    console.log(event);
     const registerObj = {
       eventid: event.eventid,
       userid: sessionStorage.getItem('userid'),

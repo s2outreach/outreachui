@@ -108,4 +108,11 @@ export class OutreachService {
       }));
   }
 
+  public sendReportMail(reqObj) {
+    return this.http.post(this.baseURL + this.emailserver + '/sendReportInsightMail', reqObj )
+    .pipe(
+      map(resp  => {
+        return resp;
+      }));
+  }
 }

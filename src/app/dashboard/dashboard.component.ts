@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
     this.eventSubscription = this.sharedService.eventToDashboard.subscribe((data: any) => {
       this.totalEvents = this.sharedService.totalEvents;
       this.upcomingCount = this.sharedService.upcomingCount;
+      this.generateMailObj();
     });
 
     this.eventReportSubscription = this.sharedService.eventReportToDashboard.subscribe((data: any) => {
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
         this.top3Location = this.sharedService.top3Locations[2].eventlocation;
         this.top3Count = this.sharedService.top3Locations[2].locationcount;
       }
+      this.generateMailObj();
 
     });
 
@@ -60,6 +62,7 @@ export class DashboardComponent implements OnInit {
       this.volunteerGood = this.sharedService.volunteerGood;
       this.volunteerAverage = this.sharedService.volunteerAverage;
       this.volunteerLow = this.sharedService.volunteerLow;
+      this.generateMailObj();
     });
 
 
@@ -73,6 +76,27 @@ export class DashboardComponent implements OnInit {
     this.outreachService.getUserCount().subscribe(response => {
       this.userCount = response.count;
     });
+  }
+
+  generateMailObj() {
+    const mailObj = {
+      totalEvents: this.totalEvents,
+      upcomingEvents: this.upcomingCount,
+      totalVolunteers: this.userCount,
+      eventGoodCount: this.eventGood,
+      eventAverageCount: this.eventAverage,
+      eventLowCount: this.eventLow,
+      location1: this.top1Location,
+      location2: this.top2Location,
+      location3: this.top3Location,
+      location1Count: this.top1Count,
+      location2Count: this.top2Count,
+      location3Count: this.top3Count,
+      volunteerGoodCount: this.volunteerGood,
+      volunteerAverageCount: this.volunteerAverage,
+      volunteerLowCount: this.volunteerLow
+    };
+    this.sharedService.mailObjCreated.emit(mailObj);
   }
 
 }

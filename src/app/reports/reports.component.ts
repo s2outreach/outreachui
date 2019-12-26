@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { OutreachService } from './../service/outreach.service';
+import { SharedService } from './../service/shared.service';
 
 @Component({
   selector: 'app-reports',
@@ -7,12 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor() { }
+  mailobjSubscription: Subscription;
+  mailobj: any;
+
+  constructor(@Inject(OutreachService) private outreachService, 
+  @Inject(SharedService) private sharedService ) {
+    this.mailobjSubscription = this.sharedService.mailObjCreated.subscribe((mailobj) => {
+      this.mailobj = mailobj;
+    })
+   }
 
   ngOnInit() {
   }
 
-  sendMail() {
-    console.log('mail sent');
+  sendmail() {
+    this.outreachService.sendReportMail(this.mailobj).subscribe(response => {
+    });
   }
 }

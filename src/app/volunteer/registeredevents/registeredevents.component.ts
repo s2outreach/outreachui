@@ -11,7 +11,6 @@ import { SharedService } from './../../service/shared.service';
 })
 export class RegisteredeventsComponent implements OnInit {
 
-  userRegisteredSubscription: Subscription;
   volunteerRegisteredEventsSubscription: Subscription;
   registeredEvents: any;
   allEvents: any;
@@ -27,7 +26,6 @@ export class RegisteredeventsComponent implements OnInit {
   }
 
   cancel(event) {
-    console.log(event);
     const cancelObj = {
       eventid: event.eventid,
       userid: sessionStorage.getItem('userid'),
