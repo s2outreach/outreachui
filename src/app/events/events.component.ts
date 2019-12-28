@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
 import { OutreachService } from './../service/outreach.service';
 import { SharedService } from './../service/shared.service';
@@ -32,7 +33,7 @@ export class EventsComponent implements OnInit {
 
   constructor(@Inject(OutreachService) private outreachService,
   @Inject(SharedService) private sharedService,
-  private datePipe : DatePipe) { }
+  private datePipe : DatePipe, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getAllEvents();
@@ -59,6 +60,13 @@ export class EventsComponent implements OnInit {
         this.getAllEvents();
         if (this.sendmailChecked) {
           this.sendmail();
+          this._snackBar.open('Event added!', '', {
+            duration: 5000
+          });
+        } else {
+          this._snackBar.open('Event added and mail sent!', '', {
+            duration: 5000
+          });
         }
       });
     }

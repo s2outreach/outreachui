@@ -12,6 +12,7 @@ import { SharedService } from './../../service/shared.service';
 export class VolunteerreportsComponent implements OnInit {
 
   subscription: Subscription;
+  dashboardSubscription: Subscription;
   allVolunteers: any;
   show = true;
   volunteerGood = 0;
@@ -21,6 +22,9 @@ export class VolunteerreportsComponent implements OnInit {
   constructor(@Inject(OutreachService) private outreachService,
     @Inject(SharedService) private sharedService) { 
       this.subscription = this.sharedService.eventAdded.subscribe((data: any) => {
+        this.getAllUsers();
+      });
+      this.dashboardSubscription = this.sharedService.updateDashboard.subscribe((data: any) => {
         this.getAllUsers();
       });
     }

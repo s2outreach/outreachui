@@ -1,4 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
 import { OutreachService } from './../../service/outreach.service';
 import { SharedService } from './../../service/shared.service';
@@ -10,13 +12,18 @@ import { SharedService } from './../../service/shared.service';
 })
 export class AlleventsComponent implements OnInit {
 
+  subscription: Subscription;
   allEvents: any;
   registeredEvents: any;
   unregisteredEvents: any;
   allEventsFormatted: any;
 
   constructor(@Inject(OutreachService) private outreachService,
-  @Inject(SharedService) private sharedService) { }
+    @Inject(SharedService) private sharedService, private _snackBar: MatSnackBar) { 
+      this.subscription = this.sharedService.eventAdded.subscribe((data: any) => {
+        this.getAllEvents();
+      });
+    }
 
   ngOnInit() {
     this.getAllEvents();
@@ -30,7 +37,7 @@ export class AlleventsComponent implements OnInit {
   }
 
   getRegisteredEvents() {
-    this.outreachService.getRegisteredEvents(sessionStorage.getItem('userid')).subscribe(response => {
+      this.outreachService.getRegisteredEvents(sessionStorage.getItem('userid')).subscribe(response => {
       this.registeredEvents = _.orderBy(response, ['eventdate'], ['desc']);
       this.registeredEvents = _.intersectionBy(this.allEvents, this.registeredEvents, 'eventid');
       this.sharedService.volunteerRegisteredEvents.emit(this.registeredEvents);
@@ -60,6 +67,10 @@ export class AlleventsComponent implements OnInit {
 
     this.outreachService.registerUser(registerObj).subscribe(response => {
       this.getRegisteredEvents();
+      this.sharedService.volunteerRegistered.emit('volunteerRegistered');
+      this._snackBar.open('Registered successfully!', '', {
+        duration: 5000
+      });
     });
   }
 

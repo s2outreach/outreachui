@@ -24,19 +24,5 @@ export class RegisteredeventsComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  cancel(event) {
-    const cancelObj = {
-      eventid: event.eventid,
-      userid: sessionStorage.getItem('userid'),
-      eventname: event.eventname,
-      username: sessionStorage.getItem('username'),
-      email: sessionStorage.getItem('email')
-    }
-
-    // this.outreachService.registerUser(registerObj).subscribe(response => {
-    //   this.sharedService.eventAdded.emit('userRegistered');
-    // });
-  }
   
 }

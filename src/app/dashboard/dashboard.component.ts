@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
 
   userCount = 0;
   eventSubscription: Subscription;
+  userSubscription: Subscription;
   eventReportSubscription: Subscription;
   volunterReportSubscription: Subscription;
   public totalEvents = 0;
@@ -36,6 +37,9 @@ export class DashboardComponent implements OnInit {
       this.totalEvents = this.sharedService.totalEvents;
       this.upcomingCount = this.sharedService.upcomingCount;
       this.generateMailObj();
+    });
+    this.userSubscription = this.sharedService.updateUserCount.subscribe((data: any) => {
+      this.getUserCount();
     });
 
     this.eventReportSubscription = this.sharedService.eventReportToDashboard.subscribe((data: any) => {

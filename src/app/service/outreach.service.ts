@@ -18,7 +18,7 @@ export class OutreachService {
   constructor(private http: HttpClient) { }
 
   public register(reqObj) {
-    return this.http.post(this.baseURL + this.authserver + '/register', reqObj)
+    return this.http.post(this.baseURL + this.authserver + '/v1/register', reqObj)
     .pipe(
     map(resp => {
       return resp;
@@ -27,7 +27,7 @@ export class OutreachService {
 
   public authenticate(username, password) {
     // const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
-    return this.http.post(this.baseURL + this.authserver + '/authenticate', null, {
+    return this.http.post(this.baseURL + this.authserver + '/v1/authenticate', null, {
       headers: new HttpHeaders().set('Authorization', 'Basic ' + btoa(username + ':' + password)),
       observe: 'response'})
     .pipe(
@@ -37,7 +37,7 @@ export class OutreachService {
   }
 
   public getUserCount() {
-    return this.http.get(this.baseURL + this.eventserver + '/getUserCount')
+    return this.http.get(this.baseURL + this.eventserver + '/v1/getUserCount')
     .pipe(
       map(resp  => {
         return resp;
@@ -45,7 +45,7 @@ export class OutreachService {
   }
 
   public addEvent(reqObj) {
-    return this.http.post(this.baseURL + this.eventserver + '/addEvent', reqObj )
+    return this.http.post(this.baseURL + this.eventserver + '/v1/addEvent', reqObj )
     .pipe(
       map(resp  => {
         return resp;
@@ -53,7 +53,7 @@ export class OutreachService {
   }
 
   public getAllEvents() {
-    return this.http.get(this.baseURL + this.eventserver + '/getAllEvents')
+    return this.http.get(this.baseURL + this.eventserver + '/v1/getAllEvents')
     .pipe(
     map(resp => {
       return resp;
@@ -61,7 +61,7 @@ export class OutreachService {
   }
 
   public getEventReport() {
-    return this.http.get(this.baseURL + this.eventserver + '/getEventReport')
+    return this.http.get(this.baseURL + this.eventserver + '/v1/getEventReport')
     .pipe(
     map(resp => {
       return resp;
@@ -69,7 +69,7 @@ export class OutreachService {
   }
 
   public getUserReport() {
-    return this.http.get(this.baseURL + this.eventserver + '/getUserReport')
+    return this.http.get(this.baseURL + this.eventserver + '/v1/getUserReport')
     .pipe(
     map(resp => {
       return resp;
@@ -77,7 +77,7 @@ export class OutreachService {
   }
 
   public registerUser(reqObj) {
-    return this.http.post(this.baseURL + this.eventserver + '/addUserForEvent', reqObj )
+    return this.http.post(this.baseURL + this.eventserver + '/v1/addUserForEvent', reqObj )
     .pipe(
       map(resp  => {
         return resp;
@@ -85,7 +85,7 @@ export class OutreachService {
   }
 
   public getRegisteredEvents(userid) {
-    return this.http.get(this.baseURL + this.eventserver + '/getEventsForUser?userid=' + userid)
+    return this.http.get(this.baseURL + this.eventserver + '/v1/getEventsForUser?userid=' + userid)
     .pipe(
     map(resp => {
       return resp;
@@ -93,7 +93,7 @@ export class OutreachService {
   }
 
   public getLog() {
-    return this.http.get(this.baseURL + this.logserver + '/getAllLogs')
+    return this.http.get(this.baseURL + this.logserver + '/v1/getAllLogs')
     .pipe(
     map(resp => {
       return resp;
@@ -101,7 +101,7 @@ export class OutreachService {
   }
 
   public sendNewEventMail(reqObj) {
-    return this.http.post(this.baseURL + this.emailserver + '/sendNewEventMail', reqObj )
+    return this.http.post(this.baseURL + this.emailserver + '/v1/sendNewEventMail', reqObj )
     .pipe(
       map(resp  => {
         return resp;
@@ -109,7 +109,7 @@ export class OutreachService {
   }
 
   public sendReportMail(reqObj) {
-    return this.http.post(this.baseURL + this.emailserver + '/sendReportInsightMail', reqObj )
+    return this.http.post(this.baseURL + this.emailserver + '/v1/sendReportInsightMail', reqObj )
     .pipe(
       map(resp  => {
         return resp;

@@ -12,11 +12,19 @@ import { SharedService } from './../service/shared.service'
 export class LogComponent implements OnInit {
 
   logs: any;
-  subscription: Subscription;
+  eventSubscription: Subscription;
+  userSubscription: Subscription;
+  volunteerRegisteredSubscription: Subscription;
 
   constructor(@Inject(OutreachService) private outreachService,
   @Inject(SharedService) private sharedService) { 
-    this.subscription = this.sharedService.eventAdded.subscribe((data: any) => {
+    this.eventSubscription = this.sharedService.eventAdded.subscribe((data: any) => {
+      this.getLog();
+    });
+    this.userSubscription = this.sharedService.updateUserCount.subscribe((data: any) => {
+      this.getLog();
+    });
+    this.volunteerRegisteredSubscription = this.sharedService.updateDashboard.subscribe((data: any) => {
       this.getLog();
     });
   }

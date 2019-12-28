@@ -7,14 +7,11 @@
           <div class="col-md-6">
             <strong>Event</strong>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <strong>Date</strong>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <strong>Location</strong>
-          </div>
-          <div class="col-md-2">
-            <strong>Register</strong>
           </div>
   	    </div>
       </mat-card-content>
@@ -32,16 +29,13 @@
           <div class="col-md-6">
             {{event.eventname}}
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <span class="d-md-none"><strong>Date: </strong></span>
             {{event.eventdate}}
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <span class="d-md-none"><strong>Location</strong></span>
             {{event.location}}
-          </div>
-          <div class="col-md-2">
-            <mat-icon class="icon-cancel" (click)="cancel()">highlight_off</mat-icon>
           </div>
   	    </div>
       </mat-card-content>

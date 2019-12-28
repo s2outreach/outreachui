@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule, MatDividerModule,
   MatCardModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, 
-  MatCheckboxModule, MatSelectModule } from '@angular/material';
+  MatCheckboxModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,7 +59,8 @@ import { RegisteredeventsComponent } from './volunteer/registeredevents/register
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [ DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: HttpinterceptorService, multi: true}

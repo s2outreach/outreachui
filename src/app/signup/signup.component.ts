@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { OutreachService } from '../service/outreach.service';
+import { SharedService } from './../service/shared.service';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +21,9 @@ export class SignupComponent implements OnInit {
   public errorMsg = '';
   public successMsg = '';
 
-  constructor(@Inject(OutreachService) private outreachService, @Inject(Router) private router) { }
+  constructor(@Inject(OutreachService) private outreachService, 
+  @Inject(SharedService) private sharedService, 
+  @Inject(Router) private router, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -48,6 +52,10 @@ export class SignupComponent implements OnInit {
     };
       this.outreachService.register(reqObj).subscribe(response => {
       if (response.status == 'user added') {
+        this.sharedService.userAdded.emit('userAdded');
+        this._snackBar.open('Sign up Complete. Please login', '', {
+          duration: 5000
+        });
         this.router.navigate(['/login']);
       }
       if (response.status == 'username exists') {
