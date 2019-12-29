@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { SharedService } from './service/shared.service';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   private eventSubscription: Subscription;
   private volunteerRegisteredSubscription: Subscription;
   private newuserSubscription: Subscription;
-  private observerUrl = 'http://localhost/observer'
+  private observerUrl = environment.observerurl;
   private stompClient;
   public header = '';
   public username = '';

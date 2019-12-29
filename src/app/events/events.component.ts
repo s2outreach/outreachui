@@ -60,11 +60,11 @@ export class EventsComponent implements OnInit {
         this.getAllEvents();
         if (this.sendmailChecked) {
           this.sendmail();
-          this._snackBar.open('Event added!', '', {
+          this._snackBar.open('New Event added!', '', {
             duration: 5000
           });
         } else {
-          this._snackBar.open('Event added and mail sent!', '', {
+          this._snackBar.open('New Event added and mail sent!', '', {
             duration: 5000
           });
         }

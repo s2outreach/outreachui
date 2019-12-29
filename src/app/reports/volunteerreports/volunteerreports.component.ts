@@ -43,6 +43,8 @@ export class VolunteerreportsComponent implements OnInit {
           this.allVolunteers[i].id = i;
         }
         this.allVolunteers[0].collapse = false;
+        this.eventByParticipation();
+        this.sendtoDashboard();
       }
     });
   }
@@ -58,6 +60,9 @@ export class VolunteerreportsComponent implements OnInit {
 
   eventByParticipation() {
     let tempGroupedUsers: any;
+    this.volunteerGood = 0;
+    this.volunteerAverage = 0;
+    this.volunteerLow = 0;
     let groupedUsers = [];
     tempGroupedUsers = _.groupBy(this.allVolunteers, 'userid');
     _.each(

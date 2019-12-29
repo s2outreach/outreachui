@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { OutreachService } from './../service/outreach.service';
 import { SharedService } from './../service/shared.service';
 
@@ -14,7 +15,7 @@ export class ReportsComponent implements OnInit {
   mailobj: any;
 
   constructor(@Inject(OutreachService) private outreachService, 
-  @Inject(SharedService) private sharedService ) {
+  @Inject(SharedService) private sharedService, private _snackBar: MatSnackBar ) {
     this.mailobjSubscription = this.sharedService.mailObjCreated.subscribe((mailobj) => {
       this.mailobj = mailobj;
     })
@@ -24,6 +25,9 @@ export class ReportsComponent implements OnInit {
   }
 
   sendmail() {
+    this._snackBar.open('Mail Sent to the Admin inbox!', '', {
+      duration: 5000
+    });
     this.outreachService.sendReportMail(this.mailobj).subscribe(response => {
     });
   }

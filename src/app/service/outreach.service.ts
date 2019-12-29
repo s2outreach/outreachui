@@ -18,7 +18,7 @@ export class OutreachService {
   constructor(private http: HttpClient) { }
 
   public register(reqObj) {
-    return this.http.post(this.baseURL + this.authserver + '/v1/register', reqObj)
+    return this.http.post(this.baseURL + this.authserver + '/register', reqObj)
     .pipe(
     map(resp => {
       return resp;
@@ -27,7 +27,7 @@ export class OutreachService {
 
   public authenticate(username, password) {
     // const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
-    return this.http.post(this.baseURL + this.authserver + '/v1/authenticate', null, {
+    return this.http.post(this.baseURL + this.authserver + '/authenticate', null, {
       headers: new HttpHeaders().set('Authorization', 'Basic ' + btoa(username + ':' + password)),
       observe: 'response'})
     .pipe(
