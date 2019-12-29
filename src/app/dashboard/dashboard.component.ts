@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import * as _ from 'lodash';
 import { OutreachService } from './../service/outreach.service';
 import { SharedService } from './../service/shared.service'
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
   public volunteerLow = 0;
 
   constructor(@Inject(OutreachService) private outreachService,
-    @Inject(SharedService) private sharedService) {
+    @Inject(SharedService) private sharedService, private _snackBar: MatSnackBar) {
     this.eventSubscription = this.sharedService.eventToDashboard.subscribe((data: any) => {
       this.totalEvents = this.sharedService.totalEvents;
       this.upcomingCount = this.sharedService.upcomingCount;
@@ -78,6 +79,12 @@ export class DashboardComponent implements OnInit {
 
   getUserCount() {
     this.outreachService.getUserCount().subscribe(response => {
+      if (response.status && response.status == 'Service unavailable') {
+        this._snackBar.open('Server unavailable', 'Please try later', {
+          duration: 10000
+        });
+      }
+      
       this.userCount = response.count;
     });
   }

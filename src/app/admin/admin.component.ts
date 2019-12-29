@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
-import { OutreachService } from '../service/outreach.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
@@ -8,12 +7,7 @@ import { OutreachService } from '../service/outreach.service';
 })
 export class AdminComponent implements OnInit {
 
-  encapsulation: ViewEncapsulation.None;
-
-  allRides: any;
-  interval: any;
-
-  constructor(@Inject(OutreachService) private outreachService) { }
+  constructor() { }
 
   ngOnInit() {
 

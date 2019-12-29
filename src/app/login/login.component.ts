@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
         if (response.body.role === 'ADMIN') {
           this.router.navigate(['/admin']);
         }
+        if (response.body.status && response.body.status == 'Service unavailable') {
+          this.errorMsg = 'Server unavailable';
+        }
     }, error => {
       if (error.status === 401) {
         this.errorMsg = 'Invalid credentials';

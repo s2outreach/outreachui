@@ -21,9 +21,9 @@ export class SignupComponent implements OnInit {
   public errorMsg = '';
   public successMsg = '';
 
-  constructor(@Inject(OutreachService) private outreachService, 
-  @Inject(SharedService) private sharedService, 
-  @Inject(Router) private router, private _snackBar: MatSnackBar) { }
+  constructor(@Inject(OutreachService) private outreachService,
+    @Inject(SharedService) private sharedService,
+    @Inject(Router) private router, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -46,28 +46,31 @@ export class SignupComponent implements OnInit {
 
     if (this.errorMsg.length == 0) {
       const reqObj = {
-      username: this.username,
-      password: this.password,
-      email: this.email
-    };
+        username: this.username,
+        password: this.password,
+        email: this.email
+      };
       this.outreachService.register(reqObj).subscribe(response => {
-      if (response.status == 'user added') {
-        this.sharedService.userAdded.emit('userAdded');
-        this._snackBar.open('Sign up Complete. Please login', '', {
-          duration: 5000
+        if (response.status && response.status == 'Service unavailable') {
+          this.errorMsg = 'Server unavailable';
+        }
+        if (response.status == 'user added') {
+          this.sharedService.userAdded.emit('userAdded');
+          this._snackBar.open('Sign up Complete. Please login', '', {
+            duration: 5000
+          });
+          this.router.navigate(['/login']);
+        }
+        if (response.status == 'username exists') {
+          this.errorMsg = 'Username already exists';
+        }
+        if (response.status == 'email exists') {
+          this.errorMsg = 'Email already exists';
+        }
+      },
+        error => {
+          this.errorMsg = 'Server unavailable';
         });
-        this.router.navigate(['/login']);
-      }
-      if (response.status == 'username exists') {
-        this.errorMsg = 'Username already exists';
-      }
-      if (response.status == 'email exists') {
-        this.errorMsg = 'Email already exists';
-      }
-    },
-    error => {
-      this.errorMsg = 'Server unavailable';
-    });
     }
   }
 

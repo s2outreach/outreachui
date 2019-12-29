@@ -72,6 +72,7 @@ export class AppComponent implements OnInit {
   initializeWebSocketConnection() {
     let ws = new SockJS(this.observerUrl);
     this.stompClient = Stomp.over(ws);
+    this.stompClient.debug = null;
     let that = this;
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe("/notify", (message) => {

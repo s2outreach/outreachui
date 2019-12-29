@@ -17,7 +17,7 @@ export class LogComponent implements OnInit {
   volunteerRegisteredSubscription: Subscription;
 
   constructor(@Inject(OutreachService) private outreachService,
-  @Inject(SharedService) private sharedService) { 
+    @Inject(SharedService) private sharedService) {
     this.eventSubscription = this.sharedService.eventAdded.subscribe((data: any) => {
       this.getLog();
     });
@@ -36,13 +36,17 @@ export class LogComponent implements OnInit {
   getLog() {
     this.outreachService.getLog().subscribe(response => {
       this.logs = [];
-      response = _.orderBy(response, ['timestamp'], ['desc']);
-      response.forEach(eachLog => {
-        this.logs.push(eachLog.eventname + ' | '
-        + eachLog.username + ' | '
-        + eachLog.action + ' | '
-        + eachLog.timestamp);
-      });
+      if (response.status && response.status == 'Service unavailable') {
+        this.logs.push("Log server is down. Please try later");
+      } else {
+        response = _.orderBy(response, ['timestamp'], ['desc']);
+        response.forEach(eachLog => {
+          this.logs.push(eachLog.eventname + ' | '
+            + eachLog.username + ' | '
+            + eachLog.action + ' | '
+            + eachLog.timestamp);
+        });
+      }
     });
   }
 
