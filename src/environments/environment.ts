@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseURL: 'http://localhost:8080/',
-  observerurl: 'http://localhost:8081/observer'
+  observerurl: 'http://localhost:8082/observer'
 };
 
 /*
